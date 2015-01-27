@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ng-filters Test</title>
+</head>
+
+<body ng-app="AnkFilters" ng-controller="ankFilterCtrl">
+
+		<h1>{{text | ellipses:10}}</h1>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <!-- ngFilter -->
+    <script type="text/javascript" src="../src/module.js"></script>
+    <script type="text/javascript" src="../src/_ellipses.js"></script>
+</body>
+
+</html>
