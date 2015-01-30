@@ -9,6 +9,8 @@ angular.module('ngFilter').filter('stringArrayToString', [function() {
     var resultString = '';
     maxLength = !maxLength ? input.length : maxLength;
     maxLength = input.length < maxLength ? input.length : maxLength;
+    if(!maxLength)
+      return resultString;
     if (maxLength == 1) {
       return input[0];
     }

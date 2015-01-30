@@ -34,6 +34,7 @@ angular.module('AnkFilters').controller('ankFilterCtrl',[
 		log($filter('stringArrayToString')(arrayOfString2,8));
 		log($filter('stringArrayToString')(arrayOfString3,8));
 		log($filter('stringArrayToString')(arrayOfString4,8));
+		log($filter('stringArrayToString')([],8));
 
 
 		var uri = "http://test.com?text=abc bcd";
