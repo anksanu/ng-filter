@@ -17,5 +17,25 @@ ListItem.prototype.getPrev = function() {
 }
 
 function Queue() {
- 	var _queue = Object.create({});
+  var _queue = Object.create({});
+}
+
+Queue.prototype.push = function() {
+
+}
+
+Queue.prototype.pop = function() {
+
+}
+
+Queue.prototype.length = function() {
+
+}
+
+Queue.prototype.size = function() {
+
+}
+
+Queue.prototype.toString = function() {
+
 }
