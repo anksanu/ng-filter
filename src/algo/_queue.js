@@ -34,7 +34,7 @@ function Queue() {
 }
 
 Queue.prototype.uniqueHash = function() {
-  return Math.floor(new Date().getTime()*Math.random(5));
+  return Math.floor(new Date().getTime() * Math.random(5));
 }
 
 Queue.prototype.peek = function() {
@@ -64,11 +64,17 @@ Queue.prototype.push = function(value) {
 }
 
 Queue.prototype.pop = function() {
-
+  if (!this._length) {
+    return void 0;
+  }
+  this._length -= 1;
+  var tempId = this._front;
+  this._front = this._queue[this._front].getNext();
+  return this._queue[tempId].get();
 }
 
 Queue.prototype.length = function() {
-
+  return this._length;
 }
 
 Queue.prototype.size = function() {
@@ -79,8 +85,8 @@ Queue.prototype.toString = function() {
   var tempId = this._front;
   var arr = [];
   for (var i = 0; i < this._length; i++) {
-  	if(!tempId)
-  		continue;
+    if (!tempId)
+      continue;
     arr.push(this._queue[tempId].get());
     tempId = this._queue[tempId].getNext();
   }
@@ -94,3 +100,6 @@ q.push(6);
 q.push(7);
 q.push(8);
 console.log(q.toString());
+q.pop();
+console.log(q.toString());
+
