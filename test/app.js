@@ -10,7 +10,7 @@ angular.module('AnkFilters').controller('ankFilterCtrl',[
 		var arrayOfString4 = ['alpha','beta','gaama','delta'];
 
 		function log(){
-			console.log(arguments[0]);
+			// console.log(arguments[0]);
 		}
 
 		log('Filter Name stringArrayToString');
