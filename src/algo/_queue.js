@@ -1,31 +1,3 @@
-function ListItem(value, next, prev) {
-  this._value = value || void 0;
-  this._next = next || void 0;
-  this._prev = prev || void 0;
-}
-
-ListItem.prototype.get = function() {
-  return this._value;
-}
-
-ListItem.prototype.getNext = function() {
-  return this._next;
-}
-
-ListItem.prototype.setNext = function(next) {
-  this._next = next;
-  return this;
-}
-
-ListItem.prototype.getPrev = function() {
-  return this._prev;
-}
-
-ListItem.prototype.setPrev = function(prev) {
-  this._prev = prev;
-  return this;
-}
-
 function Queue() {
   this._queue = Object.create({});
   this._length = 0;
@@ -41,26 +13,26 @@ Queue.prototype.peek = function() {
   if (this._front) {
     return this._queue[this._front].get();
   }
-  return null;
+  return void 0;
 }
 
 Queue.prototype.push = function(value) {
   var id = this.uniqueHash();
+  var item = new ListItem(value, void 0, void 0);
   if (!this._length) {
-    var item = new ListItem(value, void 0, void 0);
     this._front = id;
     this._rear = id;
     this._queue[id] = item;
     this._length += 1;
-    return true;
+    return this;
   }
 
-  var item = new ListItem(value, void 0, this._rear);
-  this._queue[this._rear]._next = id;
+  item.setPrev(this._rear);
+  this._queue[this._rear].setNext(id);
   this._rear = id;
   this._queue[id] = item;
   this._length += 1;
-  return true;
+  return this;
 }
 
 Queue.prototype.pop = function() {
@@ -75,10 +47,6 @@ Queue.prototype.pop = function() {
 
 Queue.prototype.length = function() {
   return this._length;
-}
-
-Queue.prototype.size = function() {
-
 }
 
 Queue.prototype.toString = function() {
@@ -102,4 +70,3 @@ q.push(8);
 console.log(q.toString());
 q.pop();
 console.log(q.toString());
-
