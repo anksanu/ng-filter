@@ -32,3 +32,9 @@ Tree.prototype.searchLookUp = function(nodeId, tree, value) {
 Tree.prototype.getNewHash = function() {
   return Math.floor(new Date().getTime() * Math.random(5));
 };
+
+Tree.prototype.isEmpty = function() {
+  if (!this._root)
+    return true;
+  return false;
+};

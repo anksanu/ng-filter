@@ -37,12 +37,6 @@ BinaryTree.prototype.search = function(value) {
   return this.searchLookUp(rootNodeId, tree, value);
 };
 
-BinaryTree.prototype.isEmpty = function() {
-  if (!this._root)
-    return true;
-  return false;
-};
-
 BinaryTree.prototype.getRootNode = function() {
   return this._root;
 };
