@@ -1,11 +1,10 @@
 function BinaryTree() {
-  this._tree = Object.create({});
-  this._root = void 0;
+  Tree.call(this);
 }
 
-BinaryTree.prototype.getNewHash = function() {
-  return Math.floor(new Date().getTime() * Math.random(5));
-};
+BinaryTree.prototype = Tree.prototype;
+
+BinaryTree.prototype.constructor = BinaryTree;
 
 BinaryTree.prototype.addNode = function(value) {
   var newNode = new Node(value, this._root);
@@ -16,20 +15,7 @@ BinaryTree.prototype.addNode = function(value) {
     return;
   }
 
-
-  function lookUp(nodeId, tree, value) {
-    var node = tree[nodeId];
-    var nodeValue = node.get();
-    var nodeLeft = node.children().left;
-    var nodeRight = node.children().right;
-    if (nodeValue >= value) {
-      return nodeLeft != undefined ? lookUp(nodeLeft, tree, value) : nodeId;
-    } else {
-      return nodeRight != undefined ? lookUp(nodeRight, tree, value) : nodeId;
-    }
-  }
-
-  var parentNodeId = lookUp(this._root, this._tree, value);
+  var parentNodeId = this.addLookUp(this._root, this._tree, value);
   var parentNode = this._tree[parentNodeId];
   var parentNodeValue = parentNode.get();
   newNode.setParent(parentNodeId);
@@ -48,21 +34,7 @@ BinaryTree.prototype.search = function(value) {
     return void 0;
   }
 
-  function lookUp(nodeId, tree, value) {
-    var node = tree[nodeId];
-    var nodeValue = node.get();
-    var nodeLeft = node.children().left;
-    var nodeRight = node.children().right;
-    if (nodeValue > value) {
-      return nodeLeft != undefined ? lookUp(nodeLeft, tree, value) : nodeId;
-    } else if (nodeValue < value) {
-      return nodeRight != undefined ? lookUp(nodeRight, tree, value) : nodeId;
-    } else {
-      return node;
-    }
-  }
-
-  return lookUp(rootNodeId, tree, value);
+  return this.searchLookUp(rootNodeId, tree, value);
 };
 
 BinaryTree.prototype.isEmpty = function() {
