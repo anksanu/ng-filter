@@ -23,9 +23,9 @@ BinaryTree.prototype.addNode = function(value) {
     var nodeLeft = node.children().left;
     var nodeRight = node.children().right;
     if (nodeValue >= value) {
-      return nodeLeft != undefined ? lookUp(nodeLeft,tree,value) : nodeId;
+      return nodeLeft != undefined ? lookUp(nodeLeft, tree, value) : nodeId;
     } else {
-      return nodeRight != undefined ? lookUp(nodeRight,tree,value) : nodeId;
+      return nodeRight != undefined ? lookUp(nodeRight, tree, value) : nodeId;
     }
   }
 
@@ -41,6 +41,30 @@ BinaryTree.prototype.addNode = function(value) {
   this._tree[id] = newNode;
 };
 
+BinaryTree.prototype.search = function(value) {
+  var rootNodeId = this._root;
+  var tree = this._tree;
+  if (!this._root) {
+    return void 0;
+  }
+
+  function lookUp(nodeId, tree, value) {
+    var node = tree[nodeId];
+    var nodeValue = node.get();
+    var nodeLeft = node.children().left;
+    var nodeRight = node.children().right;
+    if (nodeValue > value) {
+      return nodeLeft != undefined ? lookUp(nodeLeft, tree, value) : nodeId;
+    } else if (nodeValue < value) {
+      return nodeRight != undefined ? lookUp(nodeRight, tree, value) : nodeId;
+    } else {
+      return node;
+    }
+  }
+
+  return lookUp(rootNodeId, tree, value);
+};
+
 BinaryTree.prototype.isEmpty = function() {
   if (!this._root)
     return true;
@@ -52,7 +76,7 @@ BinaryTree.prototype.getRootNode = function() {
 };
 
 BinaryTree.prototype.toString = function() {
-
+  return 'Object Binary Tree';
 };
 
 var tree = new BinaryTree();
@@ -61,3 +85,4 @@ tree.addNode(4);
 tree.addNode(7);
 tree.addNode(6);
 console.table(tree._tree);
+console.log(tree.search(4));
