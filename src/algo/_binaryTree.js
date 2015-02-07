@@ -44,11 +44,3 @@ BinaryTree.prototype.getRootNode = function() {
 BinaryTree.prototype.toString = function() {
   return 'Object Binary Tree';
 };
-
-var tree = new BinaryTree();
-tree.addNode(5);
-tree.addNode(4);
-tree.addNode(7);
-tree.addNode(6);
-console.table(tree._tree);
-console.log(tree.search(4));
